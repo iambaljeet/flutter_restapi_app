@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_restapi_app/Post.dart';
+import 'package:flutter_restapi_app/User.dart';
 import 'package:http/http.dart' as http;
 
 void main() => runApp(MyApp());
@@ -58,6 +59,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 return CircularProgressIndicator();
               },
             ),
+            MaterialButton(
+              onPressed: () async {
+                Map postMap = Map();
+                postMap['title'] = 'test';
+                postMap['body'] = 'body';
+                postMap['userId'] = '1';
+
+                User user = await postData(postMap);
+                print('title ${user.title} body ${user.body} id ${user.id} userId ${user.userId}');
+              },
+              child: Text('Post Data'),
+            )
           ],
         ),
       ),
@@ -77,6 +90,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if(response.statusCode == 200) {
       return Post.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load post');
+    }
+  }
+
+  Future<User> postData(Map body) async {
+    var url = 'https://jsonplaceholder.typicode.com/posts';
+    
+    final response = await http.post(url, body: body);
+
+    print(response.body);
+    print(response.statusCode);
+
+    if(response.statusCode == 201) {
+      return User.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to load post');
     }
