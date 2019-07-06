@@ -1,6 +1,17 @@
-# flutter_restapi_app
+# Flutter API Example
 
-Application to demonstrate Rest API in Flutter.
+#### Application build to demonstrate basic usage of GET & POST API in Flutter.
+In this application we fetched Data from API in Flutter and build Widget's accordingly. Also it will POST data to API and print it's response on the console.
+
+> We used 'http' package for using API's in Application. 
+
+Settingup Project:
+
+1. Clone using : Clone using: https://github.com/iambaljeet/flutter_restapi_app.git
+2. Open project in Android studio using 'File >> Open'.
+
+That's all.
+
 
 ## Getting Started
 
